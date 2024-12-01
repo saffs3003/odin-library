@@ -28,27 +28,30 @@
     position: absolute;
     top:0;
     padding:20px;
+    border-bottom: 1px solid var(--aliceblue);
+    z-index: 2;
    
 
   }
 
-  nav>div{
-    width:200px;
-    display: flex;
-    justify-items: center;
-    justify-content: space-evenly;
-   
-  }
-  nav>a,nav>div>a{
+ 
+  nav>a{
     color: aliceblue;
+    font-size: large;
+    text-decoration: none;
   }
   main{
     position: relative;
-    top:60px;
+  top:30px;
 padding: 20px;
 background-color:var(--main-color);
 height: 84vh;
 width: 100vw;
+display: flex;
+gap:40px;
+padding-top: 100px;
+
+
   }
   dialog{
    width:40vw;
@@ -60,16 +63,12 @@ width: 100vw;
 display: none;
   }
   .Add{
-   border:2px solid var(--aliceblue);
-    width:20vw;
-    height: 50vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
   flex-direction: column;
-    border-radius: 5%;
-    padding: 4px;
-    box-shadow:8px 8px 1px var(--aliceblue);
+  
   }
   form{
     display: grid;
@@ -100,25 +99,40 @@ display: none;
     transform: rotate(90deg);
   }
   .line {
-    width: 16vw;
+    width: 12vw;
     height: 4px;
     border-radius: 50%;
     background-color: var(--aliceblue);
     transition: transform 0.3s ease;
     pointer-events: none;
 }
+h2{
+  position: relative;
+  top:90px;
+  color: var(--aliceblue);
+  background-color: var(--main-color);
+  z-index: 1;
+  left:20px;
+}
 
 
   #show-dialog{
-   
+   position: absolute;
     background-color: var(--main-color);
-    border: none;
-    width: 100%;
-    height: 90%;
+   border:none;
+   font-size: 50px;
+   color: var(--aliceblue);
+   border:2px solid var(--aliceblue);
+   width:100px;
+   height: 100px;
+   border-radius: 50%;
+   padding: 4px;
+   box-shadow:4px 4px 1px var(--aliceblue);
+   bottom: 100px;
+   right:100px;
    
   }
   .info{
-    background-color: var(--aliceblue);
     width: 240px;
     height: 240px;
     display: flex;
@@ -126,8 +140,90 @@ display: none;
     justify-content: center;
     align-items: center;
     gap:8px;
+    margin: 4px;
+    border-radius: 24px;
+    color:var(--aliceblue);
+    border: 1px solid var(--aliceblue);
   }
 
   .info>button{
 width:50%;
+height: 24px;
+border-radius: 12px;
+color: var(--aliceblue);
+border: 1px solid var(--aliceblue);
+background-color: var(--main-color);
+
   }
+  .info>button:hover{
+    color: var(--main-color);
+background-color: var(--aliceblue);
+  }
+
+  .Books{
+    display: flex;
+    flex-wrap: wrap;
+    gap:24px;
+  }
+
+
+/* Styling the book container to look like a book */
+.info {
+  width: 180px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.4);
+  border-left: 24px solid #e9e7e7; /* Gives a spine-like appearance */
+  text-align: center;
+  
+}
+
+
+
+/* Adjust the shadow for a book feel on hover */
+.info:hover {
+  transform: rotate(-2deg);
+  box-shadow: -12px 12px 24px rgba(0, 0, 0, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Styling buttons inside each book for improved readability */
+.info > button {
+  width: 80%;
+  height: 32px;
+  margin-top: auto;
+  font-weight: bold;
+
+  border: 1px solid var(--aliceblue);
+  border-radius: 8px;
+  box-shadow:2px 2px 8px rgba(112, 111, 111, 0.3);
+}
+
+.info > button:hover {
+
+  box-shadow: none;
+  cursor: pointer;
+}
+
+/* Text inside the book */
+.info h3,
+.info p {
+  font-family: 'Georgia', serif;
+
+  z-index: 2;
+}
+
+/* Tweak the spacing and layout inside main */
+.Books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-evenly;
+ 
+}

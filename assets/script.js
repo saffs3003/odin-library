@@ -24,14 +24,30 @@ const readBooks = document.querySelector("#read_books");
 const form = document.querySelector("#book-form");
 const booksContainer = document.querySelector(".Books");
 
+let Library=[
+    { 
+        bookName: "The Hobbit", 
+        bookAuthor: "J.R.R. Tolkien", 
+        totalPages: 310, 
+        readPagesValue: 310, 
+        isRead: true 
+      },
+      { 
+        bookName: "1984", 
+        bookAuthor: "George Orwell", 
+        totalPages: 328, 
+        readPagesValue: 200, 
+        isRead: false 
+      },
+   
+];
+
 
 form.addEventListener("submit",(event)=>{
     event.preventDefault();
 
     AddBooks();
-    Edit();
-    Remove();
-    ToggleRead();
+   
 });
 
 function AddBooks(){
@@ -40,24 +56,38 @@ function AddBooks(){
     let totalPages=pages.value;
     let readPagesValue =readPages.value;
     let isRead = readBooks.checked;
+const newBook={bookName,
+    bookAuthor,totalPages,readPagesValue
+}
+Library.push(newBook);
 
+    renderBook(newBook)
+
+    
+  dialog.close();
+  form.reset();
+    
+}
+
+function displayLibrary() {
+    Library.forEach(book => renderBook(book));
+}
+function renderBook(book){
     let bookElement=document.createElement('div');
     bookElement.classList.add("info");
 
     bookElement.innerHTML = `
-    <p>Name: <span class="name">${bookName}</span></p>
-    <p>Author: <span class="author">${bookAuthor}</span></p>
-    <p>No. of pages: <span class="pages">${totalPages}</span></p>
-    <p>Pages Read: <span class="read-pages">${readPagesValue}</span></p>
-    <p>Completed: <span class="read-status">${isRead ? "Yes" : "No"}</span></p>
-    <button class="read">${isRead ? "Mark As Not Read" : "Mark As Read"}</button>
+    <p>Name: <span class="name">${book.bookName}</span></p>
+    <p>Author: <span class="author">${book.bookAuthor}</span></p>
+    <p>No. of pages: <span class="pages">${book.totalPages}</span></p>
+    <p>Pages Read: <span class="read-pages">${book.readPagesValue}</span></p>
+    <p>Completed: <span class="read-status">${book.isRead ? "Yes" : "No"}</span></p>
+    <button class="read">${book.isRead ? "Mark As Not Read" : "Mark As Read"}</button>
     <button class="edit">Edit</button>
     <button class="remove">Remove</button>
   `;
   booksContainer.appendChild(bookElement)
-  dialog.close();
-  form.reset();
-    
+
 }
 
 function Edit(){
@@ -110,3 +140,7 @@ function ToggleRead() {
 
 
 
+document.addEventListener("DOMContentLoaded",()=>{ Edit();
+    Remove();
+    ToggleRead();
+    displayLibrary()} );
