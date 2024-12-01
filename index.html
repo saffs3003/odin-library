@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav>
+        <a href="#">Library</a>
+        <div class="Account login">
+            <a href="" class="login-link">Login</a>
+            <a href="" class="signout-link">Sign Out</a>
+        </div>
+    </nav>
+    <main>
+        <div class="Add">
+            <dialog>
+                <button><i
+                    class=
+                    "fi fi-br-cross"
+                    ></i></button>
+                <form id="book-form" method="post">
+                    <label for="book">Book name</label><input type="text" name="book" id="book">
+                    <label for="author">Author</label><input type="text" name="author" id="author">
+                    <label for="pages">No. of pages</label><input type="text" name="pages" id="pages">
+                    <label for="read_pages">No. of pages Read</label><input type="text" name="read_pages" id="read_pages">
+                    <label for="read_books">Have you completed the book?</label><input type="checkbox" name="read_books" id="read_books">
+                    <button id="submit" type="submit">Add</button>
+                   
+                </form>
+                
+            </dialog>
+            <button id="show-dialog">
+                <div class=" line horizontal"></div>
+                <div class=" line vertical"></div>
+            </button>
+        </div>
+
+        <div class="Books">
+      
+        </div>
+    </main>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+*{
+    margin:0;padding: 0;
+   
+}
+:root{
+--main-color: rgb(39, 38, 38);
+--aliceblue:aliceblue;
+}
+
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      rgb(103, 100, 103),
+      rgb(185, 179, 193),
+      rgb(255, 255, 255),
+    
+    );
+    opacity: 1;
+  }
+  
+  
+  nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   width:100vw;
+    background-color: var(--main-color);
+    position: absolute;
+    top:0;
+    padding:20px;
+   
+
+  }
+
+  nav>div{
+    width:200px;
+    display: flex;
+    justify-items: center;
+    justify-content: space-evenly;
+   
+  }
+  nav>a,nav>div>a{
+    color: aliceblue;
+  }
+  main{
+    position: relative;
+    top:60px;
+padding: 20px;
+background-color:var(--main-color);
+height: 84vh;
+width: 100vw;
+  }
+  dialog{
+   width:40vw;
+   height: 60vh;
+ 
+  }
+
+  .login>.signout-link{
+display: none;
+  }
+  .Add{
+   border:2px solid var(--aliceblue);
+    width:20vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  flex-direction: column;
+    border-radius: 5%;
+    padding: 4px;
+    box-shadow:8px 8px 1px var(--aliceblue);
+  }
+  form{
+    display: grid;
+    grid-template-columns:1fr 2fr;
+    
+    gap: 8px;
+    padding: 4vw;
+  }
+  form>input{
+    width: 90%;
+    height: 24px;
+    border-radius: 16px;
+    margin:4px;
+  }
+  button[type="submit"]{
+   height: 30px;
+
+  }
+
+  .line{
+    width: 16vw;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--aliceblue);
+  }
+  .vertical{
+   
+    transform: rotate(90deg);
+  }
+  .line {
+    width: 16vw;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--aliceblue);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+
+  #show-dialog{
+   
+    background-color: var(--main-color);
+    border: none;
+    width: 100%;
+    height: 90%;
+   
+  }
+  .info{
+    background-color: var(--aliceblue);
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:8px;
+  }
+
+  .info>button{
+width:50%;
+  }
