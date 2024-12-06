@@ -24,6 +24,7 @@ const readBooks = document.querySelector("#read_books");
 const form = document.querySelector("#book-form");
 const booksContainer = document.querySelector(".Books");
 
+
 let Library=[
     { 
         bookName: "The Hobbit", 
@@ -62,7 +63,7 @@ const newBook={bookName,
 Library.push(newBook);
 
     renderBook(newBook)
-
+BookComplete(newBook);
     
   dialog.close();
   form.reset();
@@ -71,30 +72,55 @@ Library.push(newBook);
 
 function displayLibrary() {
     Library.forEach(book => renderBook(book));
+    
 }
 function renderBook(book){
     let bookElement=document.createElement('div');
     bookElement.classList.add("info");
 
     bookElement.innerHTML = `
-    <p>Name: <span class="name">${book.bookName}</span></p>
-    <p>Author: <span class="author">${book.bookAuthor}</span></p>
-    <p>No. of pages: <span class="pages">${book.totalPages}</span></p>
-    <p>Pages Read: <span class="read-pages">${book.readPagesValue}</span></p>
-    <p>Completed: <span class="read-status">${book.isRead ? "Yes" : "No"}</span></p>
-    <button class="read">${book.isRead ? "Mark As Not Read" : "Mark As Read"}</button>
-    <button class="edit">Edit</button>
-    <button class="remove">Remove</button>
+    <div class="ribbon tangerine-bold"></div>
+    <p class="tangerine-bold" >Name: <span class="name tangerine-bold">${book.bookName}</span></p>
+    <p class="tangerine-bold">Author: <span class="author tangerine-bold">${book.bookAuthor}</span></p>
+    <p class="tangerine-bold">No. of pages: <span class="pages tangerine-bold">${book.totalPages}</span></p>
+    <p class="tangerine-bold">Pages Read: <span class="read-pages tangerine-bold">${book.readPagesValue}</span></p>
+    <p class="tangerine-bold">Completed: <span class="read-status tangerine-bold">${book.isRead ? "Yes" : "No"}</span></p>
+    <div class="button-group">
+    <button class="read">
+  <i class="${book.isRead ? 'fi fi-ss-check-double' : 'fi fi-ss-pending'}"></i>
+</button>
+
+    
+    <button class="edit "><i
+class=
+"fi fi-ss-pencil"
+></i></button>
+    <button class="remove "><i class="fi fi-ss-trash"></i></button>
+    </div>
   `;
-  booksContainer.appendChild(bookElement)
+  booksContainer.appendChild(bookElement);
+  const editButton=bookElement.querySelector(".edit");
+  editButton.addEventListener("click",()=>{
+    Edit(bookElement,book);
+  })
+
+  const RemoveButton=bookElement.querySelector(".remove");
+  RemoveButton.addEventListener("click",()=>{
+    Remove(bookElement);
+  })
+
+  const ToggleButton=bookElement.querySelector(".read");
+  ToggleButton.addEventListener("click",()=>{
+    ToggleRead(bookElement,book);
+  })
 
 }
 
-function Edit(){
-booksContainer.addEventListener("click",(event)=>{
+function Edit(bookElement,book){
 
-    if (event.target.classList.contains("edit")){
-        const bookElement = event.target.closest(".info");
+
+    
+      
         const bookName=bookElement.querySelector(".name");
         const authorName=bookElement.querySelector(".author");
         const totalPages=bookElement.querySelector(".pages");
@@ -107,40 +133,48 @@ booksContainer.addEventListener("click",(event)=>{
        readBooks.checked=readStatus.textContent;
 dialog.showModal();
     }
-})
 
-}
 
-function Remove(){
-    booksContainer.addEventListener("click",(event)=>{
-        if (event.target.classList.contains("remove")){
-        const bookElement=event.target.closest(".info");
+function Remove(bookElement){
         booksContainer.removeChild(bookElement)}
-    })
-}
+   
 
-function ToggleRead() {
-    booksContainer.addEventListener("click", (event) => {
-        if (event.target.classList.contains("read")) {
-            const bookElement = event.target.closest(".info");
-            const toggleRead = bookElement.querySelector(".read");
+
+function ToggleRead(bookElement,book) {
+    
+            
             const readStatus = bookElement.querySelector(".read-status");
+          const icon=bookElement.querySelector("i")
+          if (!icon) {
+            console.error("Icon element not found!");
+        }
+        const ribbon=bookElement.querySelector(".ribbon")
 
-            if (toggleRead.textContent === "Mark As Not Read") {
-                toggleRead.textContent = "Mark As Read";
+            if (readStatus.textContent === "Yes") {
                 readStatus.textContent = "No"; // Not read
+              
+     
+                icon.className = "fi fi-ss-pending";
+                
+                ribbon.style.setProperty("background-color", " maroon", "important");
+                book.isRead = false;
+                
             } else {
-                toggleRead.textContent = "Mark As Not Read";
                 readStatus.textContent = "Yes"; // Read
+                icon.className = "fi fi-ss-check-double";
+                
+
+                ribbon.style.setProperty("background-color", "green", "important");
+                book.isRead = true;
+
             }
         }
-    });
-}
 
 
 
 
-document.addEventListener("DOMContentLoaded",()=>{ Edit();
-    Remove();
-    ToggleRead();
+
+
+document.addEventListener("DOMContentLoaded",()=>{ 
+   
     displayLibrary()} );
