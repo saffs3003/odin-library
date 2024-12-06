@@ -168,6 +168,11 @@ font-style: bold;
   color: var(--aliceblue);
   box-shadow: none;
 }
+
+
+
+
+
 .ribbon{
   position: relative;
   width:25px;
@@ -224,10 +229,11 @@ button[type="submit"] {
   cursor: pointer;
   border-radius: 15px;
   margin: auto;
+  grid-column: 1 / span 2;
 }
 
 button[type="submit"]:hover {
-  background-color: var(--light-brown);
+  background-color: var(--light-beige);
   color: var(--dark-brown);
 }
 

@@ -5,12 +5,13 @@ const closeButton = dialog.querySelector("button");
 // Show the dialog
 showButton.addEventListener("click", () => {
   dialog.showModal();
+  form.reset();
 });
 
 // Close the dialog
 closeButton.addEventListener("click", (event) => {
   dialog.close();
-  console.log("close")
+ 
 });
 
 // Get references to input elements
@@ -31,7 +32,7 @@ let Library=[
         bookAuthor: "J.R.R. Tolkien", 
         totalPages: 310, 
         readPagesValue: 310, 
-        isRead: true 
+        isRead: false
       },
       { 
         bookName: "1984", 
@@ -46,27 +47,30 @@ let Library=[
 
 form.addEventListener("submit",(event)=>{
     event.preventDefault();
-
+ 
     AddBooks();
+    
    
 });
 
 function AddBooks(){
+  console.log("AddBooks called");
     let bookName=book.value;
     let bookAuthor=author.value;
     let totalPages=pages.value;
     let readPagesValue =readPages.value;
     let isRead = readBooks.checked;
 const newBook={bookName,
-    bookAuthor,totalPages,readPagesValue
+    bookAuthor,totalPages,readPagesValue,isRead
 }
 Library.push(newBook);
+console.log("LIB");
+    renderBook(newBook);
+    console.log("Render");
 
-    renderBook(newBook)
-BookComplete(newBook);
-    
+console.log("book");
   dialog.close();
-  form.reset();
+  
     
 }
 
@@ -86,8 +90,9 @@ function renderBook(book){
     <p class="tangerine-bold">Pages Read: <span class="read-pages tangerine-bold">${book.readPagesValue}</span></p>
     <p class="tangerine-bold">Completed: <span class="read-status tangerine-bold">${book.isRead ? "Yes" : "No"}</span></p>
     <div class="button-group">
-    <button class="read">
+    <button class="read ">
   <i class="${book.isRead ? 'fi fi-ss-check-double' : 'fi fi-ss-pending'}"></i>
+ 
 </button>
 
     
@@ -101,7 +106,8 @@ class=
   booksContainer.appendChild(bookElement);
   const editButton=bookElement.querySelector(".edit");
   editButton.addEventListener("click",()=>{
-    Edit(bookElement,book);
+    Edit(bookElement);
+    
   })
 
   const RemoveButton=bookElement.querySelector(".remove");
@@ -116,7 +122,7 @@ class=
 
 }
 
-function Edit(bookElement,book){
+function Edit(bookElement){
 
 
     
@@ -132,6 +138,13 @@ function Edit(bookElement,book){
        readPages.value=readPages.textContent;
        readBooks.checked=readStatus.textContent;
 dialog.showModal();
+
+bookName.textContent=book.value;
+authorName.textContent=author.value;
+totalPages.textContent=pages.value;
+readPages.textContent= readPages.value;
+readStatus.textContent=readBooks.checked;
+
     }
 
 
@@ -167,7 +180,7 @@ function ToggleRead(bookElement,book) {
                 ribbon.style.setProperty("background-color", "green", "important");
                 book.isRead = true;
 
-            }
+            } 
         }
 
 
