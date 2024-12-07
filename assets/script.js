@@ -91,36 +91,25 @@ function renderBook(book){
     <p class="tangerine-bold">Completed: <span class="read-status tangerine-bold">${book.isRead ? "Yes" : "No"}</span></p>
     <div class="button-group">
     <button class="read ">
-  <i class="${book.isRead ? 'fi fi-ss-check-double' : 'fi fi-ss-pending'}"></i>
+  <i class="${book.isRead ? 'fi fi-ss-check-double' : 'fi fi-ss-pending'} read"></i>
  
 </button>
 
     
     <button class="edit "><i
 class=
-"fi fi-ss-pencil"
+"fi fi-ss-pencil edit " 
 ></i></button>
-    <button class="remove "><i class="fi fi-ss-trash"></i></button>
+    <button class="remove "><i class="fi fi-ss-trash remove"></i></button>
     </div>
   `;
   booksContainer.appendChild(bookElement);
-  const editButton=bookElement.querySelector(".edit");
-  editButton.addEventListener("click",()=>{
-    Edit(bookElement);
-    
-  })
-
-  const RemoveButton=bookElement.querySelector(".remove");
-  RemoveButton.addEventListener("click",()=>{
-    Remove(bookElement);
-  })
-
-  const ToggleButton=bookElement.querySelector(".read");
-  ToggleButton.addEventListener("click",()=>{
-    ToggleRead(bookElement,book);
-  })
+  
 
 }
+
+
+
 
 function Edit(bookElement){
 
@@ -145,18 +134,17 @@ dialog.showModal();
 
 
 function Remove(bookElement){
-        booksContainer.removeChild(bookElement)}
+    console.log("remove")
+        booksContainer.removeChild(bookElement);
+    }
    
 
 
-function ToggleRead(bookElement,book) {
+function ToggleRead(bookElement) {
     
             
             const readStatus = bookElement.querySelector(".read-status");
-          const icon=bookElement.querySelector("i")
-          if (!icon) {
-            console.error("Icon element not found!");
-        }
+       
         const ribbon=bookElement.querySelector(".ribbon")
 
             if (readStatus.textContent === "Yes") {
@@ -187,3 +175,17 @@ function ToggleRead(bookElement,book) {
 document.addEventListener("DOMContentLoaded",()=>{ 
    
     displayLibrary()} );
+    booksContainer.addEventListener("click",(event)=>{
+
+let bookElement=event.target.closest(".info");
+if(event.target.classList.contains("edit")){
+Edit(bookElement)
+}
+else if(event.target.classList.contains("read")){
+    ToggleRead(bookElement)
+
+}
+else if(event.target.classList.contains("remove")){
+Remove(bookElement);
+    }
+});
