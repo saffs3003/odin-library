@@ -139,11 +139,7 @@ function Edit(bookElement){
        readBooks.checked=readStatus.textContent;
 dialog.showModal();
 
-bookName.textContent=book.value;
-authorName.textContent=author.value;
-totalPages.textContent=pages.value;
-readPages.textContent= readPages.value;
-readStatus.textContent=readBooks.checked;
+
 
     }
 
