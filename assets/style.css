@@ -9,7 +9,7 @@
   --aliceblue: aliceblue;
   --light-brown: #d2b897; /* Soft library wood color */
   --dark-brown: #6b4f31; /* Dark wood color */
-  --light-beige: #f5f3f0; /* Soft beige for the background */
+  --light-beige: #fcfcfc; /* Soft beige for the background */
 }
 .tangerine-regular {
   font-family: "Tangerine", cursive;
@@ -247,9 +247,8 @@ dialog {
   padding: 12px;
   border-radius: 24px;
   border: none;
- position: relative;
- left:30%;
- top:20vh;
+  align-self: center;
+  justify-self: center;
 
 }
 dialog>button[type="submit"]{
@@ -260,15 +259,47 @@ width: 80%;
 position: relative;
 left:10%;
 }
-dialog>button[type="submit"]:hover {
+dialog>button[type="submit"],.ButtonGroup>button:hover {
   background-color: var(--aliceblue);
   color: var(--dark-brown);
+  cursor: pointer;
 }
 dialog>button{
   background-color: var(--light-brown);
   border: none;
   padding: 10px;;
 cursor:pointer;
-position: relative;
+  position: relative;
 left:90%;
+}
+.removeDialog{
+ 
+ 
+  gap:8px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height:30vh;
+}
+.removeDialog p,.removeDialog h4{
+  text-align: center;
+  align-self: center;
+}
+
+.ButtonGroup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:30px;
+  margin-top: 30px;
+}
+.ButtonGroup button{
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+  width:80px;
+  height: 30px;
+  border-radius: 10px;
+  border:none;
+
 }
